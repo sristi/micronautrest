@@ -15,7 +15,7 @@ public class RestApi {
     List<User> users = new ArrayList<User>();
 
     @Post("/users/")
-    public User add(User user){
+    public List<User> add(User user){
         Long id = 0L;
         if(users.size()>0) {
             User userOfMaxId = users.stream().reduce((a, b) -> a.getId().compareTo(b.getId()) > 0 ? a : b).get();
@@ -28,7 +28,7 @@ public class RestApi {
         user.setPassword("pwd"+id);
         user.setUserName("u"+id);*/
         users.add(user);
-        return user;
+        return users;
     }
 
     @Get("/users/{uid}")
