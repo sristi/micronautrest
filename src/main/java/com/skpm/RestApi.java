@@ -16,7 +16,13 @@ public class RestApi {
 
     @Post("/users/")
     public User add(User user){
-        Long id = Long.valueOf(users.size()+1);
+        Long id = 0L;
+        if(users.size()>0) {
+            User userOfMaxId = users.stream().reduce((a, b) -> a.getId().compareTo(b.getId()) > 0 ? a : b).get();
+            //Long id = Long.valueOf(users.size()+1);
+            id = Long.valueOf(userOfMaxId == null ? 1 : userOfMaxId.getId() + 1);
+        }else
+            id = 1L;
         user.setId(id);
         /*user.setName("user"+id);
         user.setPassword("pwd"+id);

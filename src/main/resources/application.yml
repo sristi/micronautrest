@@ -1,5 +1,13 @@
 micronaut:
   server:
-    port:8100
+    port: 9100
   application:
     name: micronautrest
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    useBigIntegerForInts: true
+    failOnUnknownProperties: false
+
